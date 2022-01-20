@@ -1,4 +1,4 @@
-version: "3"
+version: "3.6"
 volumes:
   db:
 networks:
@@ -9,7 +9,6 @@ services:
     hostname: ${MYSQL_HOST}
     image: mysql:8
     restart: always
-    platform: linux/amd64
     environment:
       MYSQL_DATABASE: "${MYSQL_DATABASE}"
       MYSQL_USER: "${MYSQL_USER}"
@@ -39,9 +38,8 @@ services:
       CURRENT_USER_ID: "${CURRENT_USER_ID}"
       CURRENT_USER_GROUP: "${CURRENT_USER_GROUP}"
       CURRENT_USER_GROUP_ID: "${CURRENT_USER_GROUP_ID}"
-    working_dir: "/var/www/html/"
     ports:
-      - 3050:80
+      - 80:80
     volumes:
       - ./app:/var/www/html:rw
       - ./Docker/dev/httpd.conf:/etc/apache2/apache2.conf:ro
