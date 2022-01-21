@@ -53,6 +53,9 @@ RUN apt-get update && apt-get install -y \
     && pecl install redis-5.3.3 \
     && docker-php-ext-enable redis
 
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
+
 RUN set -xe && curl -sS https://getcomposer.org/installer -o composer-setup.php && \
 php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
