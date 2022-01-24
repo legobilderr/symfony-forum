@@ -29,6 +29,8 @@ services:
   &apache-php httpd:
     container_name: *apache-php
     hostname: *apache-php
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     restart: always
     depends_on:
       - *db-service

@@ -1,4 +1,4 @@
-FROM php:8-apache
+FROM php:8.1.2-apache
 
 RUN a2enmod rewrite
 RUN a2enmod headers
@@ -43,7 +43,6 @@ RUN apt-get update && apt-get install -y \
     exif \
     gettext \
     shmop \
-    sockets \
     sysvmsg \
     sysvsem \
     sysvshm \
