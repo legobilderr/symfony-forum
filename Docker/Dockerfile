@@ -61,6 +61,8 @@ php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 WORKDIR /var/www/html
 RUN rm -f /docker-entrypoint.sh && rm -f /usr/local/etc/php-fpm.d/*
 
+RUN curl -sS https://get.symfony.com/cli/installer | bash
+RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 
 RUN curl -sS https://getcomposer.org/installer -o composer-setup.php && \
     php composer-setup.php --install-dir=/usr/local/bin --filename=composer

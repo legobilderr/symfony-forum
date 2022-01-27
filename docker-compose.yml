@@ -27,8 +27,8 @@ services:
       web:
 
   &apache-php httpd:
-    container_name: *apache-php
-    hostname: *apache-php
+    container_name: "${APACHE_CONTAINER_NAME}"
+    hostname: "${APACHE_CONTAINER_NAME}"
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: always
