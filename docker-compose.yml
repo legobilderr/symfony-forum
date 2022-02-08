@@ -75,3 +75,12 @@ services:
     networks:
       web:
 
+  node:
+    user: "1000:1000"
+    image: "node:12.18.2"
+    working_dir: /var/www/html/skeleton
+      volumes:
+        - ./app/skeleton:/var/www/html/wp-content/themes/supercars:rw
+      networks:
+        web:
+
