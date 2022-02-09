@@ -1,4 +1,4 @@
-FROM php:8-apache
+FROM php:8.1.2-apache
 
 RUN a2enmod rewrite
 RUN a2enmod headers
@@ -43,7 +43,6 @@ RUN apt-get update && apt-get install -y \
     exif \
     gettext \
     shmop \
-    sockets \
     sysvmsg \
     sysvsem \
     sysvshm \
@@ -53,12 +52,17 @@ RUN apt-get update && apt-get install -y \
     && pecl install redis-5.3.3 \
     && docker-php-ext-enable redis
 
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
+
 RUN set -xe && curl -sS https://getcomposer.org/installer -o composer-setup.php && \
 php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
 WORKDIR /var/www/html
 RUN rm -f /docker-entrypoint.sh && rm -f /usr/local/etc/php-fpm.d/*
 
+RUN curl -sS https://get.symfony.com/cli/installer | bash
+RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 
 RUN curl -sS https://getcomposer.org/installer -o composer-setup.php && \
     php composer-setup.php --install-dir=/usr/local/bin --filename=composer

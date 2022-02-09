@@ -15,3 +15,7 @@ down: ## Stop all started for development containers
 install: ## Install composer deps
 	$(docker_compose_bin) -f docker-compose.yml exec -T --workdir="${SITE_APP_DIR}" --user="${CURRENT_USER}:${CURRENT_USER_ID}" ${APACHE_CONTAINER_NAME} composer create-project symfony/skeleton:"^5.4"
 	$(docker_compose_bin) -f docker-compose.yml exec -T --workdir="${SITE_APP_DIR}"/skeleton --user="${CURRENT_USER}:${CURRENT_USER_ID}" ${APACHE_CONTAINER_NAME} composer require webapp
+	$(docker_compose_bin) -f docker-compose.yml exec -T --workdir="${SITE_APP_DIR}"/skeleton --user="${CURRENT_USER}:${CURRENT_USER_ID}" ${APACHE_CONTAINER_NAME} sed -i 's%${DATABASE_DEFAULT}%${DATABASE_URL}%g' .env
+
+install-db: ## Install db after config env skeleton
+	$(docker_compose_bin) run --rm "${APACHE_CONTAINER_NAME}" php skeleton/bin/console doctrine:database:create

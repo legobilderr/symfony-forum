@@ -14,4 +14,5 @@ if [ ! -d /home/${CURRENT_USER} ]; then
 	mkdir /home/${CURRENT_USER}
 	chown ${CURRENT_USER}:${CURRENT_USER} /home/${CURRENT_USER}
 fi
+
 exec "$@";
