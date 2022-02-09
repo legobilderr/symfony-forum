@@ -1,3 +1,7 @@
 /.env
 .idea
-app
+app/skeleton/*
+
+!app/skeleton/src
+!app/skeleton/templates
+!app/skeleton/config
