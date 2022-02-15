@@ -5,6 +5,7 @@ RUN a2enmod headers
 RUN a2enmod expires
 RUN service apache2 restart
 RUN apt-get update && apt-get install -y \
+        git \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libpng-dev \

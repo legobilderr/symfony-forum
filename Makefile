@@ -10,7 +10,7 @@ up: ## Start all containers (in background)
 	$(docker_compose_bin) -f docker-compose.yml up --no-recreate -d
 
 down: ## Stop all started for development containers
-	$(docker_compose_bin) -f docker-compose.${ENV}.yml down
+	$(docker_compose_bin) -f docker-compose.yml down
 
 install: ## Install composer deps
 	$(docker_compose_bin) -f docker-compose.yml exec -T --workdir="${SITE_APP_DIR}" --user="${CURRENT_USER}:${CURRENT_USER_ID}" ${APACHE_CONTAINER_NAME} composer create-project symfony/skeleton:"^5.4"
